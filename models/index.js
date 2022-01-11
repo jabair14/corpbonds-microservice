@@ -9,7 +9,10 @@ const sequelize = new Sequelize(
         username: dbConfig.USER,
         password: dbConfig.PASSWORD,
         dialect: dbConfig.dialect,
-        host: dbConfig.HOST
+        host: dbConfig.HOST,
+        define: {
+            timestamps: false
+        }
 
     }
 )
@@ -28,7 +31,7 @@ db.sequelize = sequelize
 
 db.Bonds = require('./bondModel')(sequelize, DataTypes)
 
-db.sequelize.sync({ force: true }).then(() => {
+db.sequelize.sync({ force: false }).then(() => {
     console.log('DB synched with sequelize')
 }).catch((error) => {
     console.log('Error syncing the DB to sequelize' + error)

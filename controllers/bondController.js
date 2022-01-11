@@ -15,37 +15,37 @@ const getOneBond = async (req, res) => {
 
 ///////delete this later, just for testing
 
-const addBond = async (req, res) => {
-    let input_data = {
-        bondSymbol: req.body.bondSymbol,
-        issuerName: req.body.issuerName,
-        interestRate: req.body.interestRate,
-        maturityDate: req.body.maturityDate,
-        faceValue: req.body.faceValue,
-        underlying: req.body.underlying,
-        altSymbol: req.body.altSymbol,
-        suffix: req.body.suffix,
-        issueType: req.body.issueType,
-        bypassClearance: req.body.bypassClearance,
-        currencyCode: req.body.currencyCode,
-        flat: req.body.flat,
-        bankrupt: req.body.bankrupt,
-        exchange: req.body.exchange
-    }
-    const bond = await Bond.create(input_data)
-    res.status(200).send(bond)
-}
+// const addBond = async (req, res) => {
+//     let input_data = {
+//         bondSymbol: req.body.bondSymbol,
+//         issuerName: req.body.issuerName,
+//         interestRate: req.body.interestRate,
+//         maturityDate: req.body.maturityDate,
+//         faceValue: req.body.faceValue,
+//         underlying: req.body.underlying,
+//         altSymbol: req.body.altSymbol,
+//         suffix: req.body.suffix,
+//         issueType: req.body.issueType,
+//         bypassClearance: req.body.bypassClearance,
+//         currencyCode: req.body.currencyCode,
+//         flat: req.body.flat,
+//         bankrupt: req.body.bankrupt,
+//         exchange: req.body.exchange
+//     }
+//     const bond = await Bond.create(input_data)
+//     res.status(200).send(bond)
+// }
 
-const deleteBond = async (req, res) => {
-    let id = req.params.id
+// const deleteBond = async (req, res) => {
+//     let id = req.params.id
 
-    await Bond.destroy({ where :{id: id}})
-    res.status(200).send(`bond with id: ${id} is deleted`)
-}
+//     await Bond.destroy({ where :{id: id}})
+//     res.status(200).send(`bond with id: ${id} is deleted`)
+// }
 
 module.exports = {
-    addBond,
+    // addBond,
+    // deleteBond,
     getAllBonds,
     getOneBond,
-    deleteBond
 }
