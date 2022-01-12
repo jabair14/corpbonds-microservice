@@ -1,5 +1,6 @@
 const db = require('../models/index')
 
+
 const Bond = db.Bonds
 
 const getAllBonds = async (req, res) => {
@@ -11,6 +12,29 @@ const getOneBond = async (req, res) => {
     let id = req.params.id
     let bonds = await Bond.findOne({where: {id: id}})
     res.status(200).send(bonds)
+}
+
+//helper function to return 25 random values
+const getRandomItems = (arr, n) => {
+    var result = new Array(n),
+        len = arr.length,
+        taken = new Array(len);
+    if (n > len)
+        throw new RangeError("getRandom: more elements taken than available");
+    while (n--) {
+        var x = Math.floor(Math.random() * len);
+        result[n] = arr[x in taken ? taken[x] : x];
+        taken[x] = --len in taken ? taken[len] : len;
+    }
+    return result;
+}
+
+//gets 25 random bonds 
+
+const getRandomBonds = async (req, res) => {
+    let bonds = await Bond.findAll({})
+    //update the hardcoded 25 to return any items between 1 - 8501
+    res.status(200).send(getRandomItems(bonds, 25))
 }
 
 ///////delete this later, just for testing
@@ -48,4 +72,5 @@ module.exports = {
     // deleteBond,
     getAllBonds,
     getOneBond,
+    getRandomBonds
 }
