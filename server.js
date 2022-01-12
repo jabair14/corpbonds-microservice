@@ -11,6 +11,12 @@ app.use(express.json());
 const routers = require('./routes/bondRouter.js')
 app.use('/bonds', routers)
 
+const investmentrouter = require('./routes/investmentRouter.js')
+app.use('/investments', investmentrouter)
+
+const bondinvestmentrouter = require('./routes/bondInvestmentRouter')
+app.use('/bondinvestments', bondinvestmentrouter)
+
 app.get('/', (req, res) => {
     res.send('Hello World!')
 })

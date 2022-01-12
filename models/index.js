@@ -30,11 +30,21 @@ const db = {}
 db.sequelize = sequelize
 
 db.Bonds = require('./bondModel')(sequelize, DataTypes)
+db.Investments = require('./investmentModel')(sequelize, DataTypes)
+db.BondInvestments = require('./bondInvestmentModel')(sequelize, DataTypes)
 
 db.sequelize.sync({ force: false }).then(() => {
     console.log('DB synched with sequelize')
 }).catch((error) => {
     console.log('Error syncing the DB to sequelize' + error)
 })
+
+db.Bonds.belongsToMany(db.Investments, {through: db.BondInvestments})
+db.Investments.belongsToMany(db.Bonds, {through: db.BondInvestments})
+// db.Bonds.belongsTo(db.BondInvestments)
+// db.Investments.belongsTo(db.BondInvestments)
+
+
+
 
 module.exports = db 
