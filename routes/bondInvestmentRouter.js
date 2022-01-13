@@ -2,9 +2,15 @@ const bondInvestmentsController = require('../controllers/bondInvestmentControll
 
 const router = require('express').Router()
 
-router.post('/', bondInvestmentsController.addBondsInvestment)
+router.post('/', bondInvestmentsController.addBondInvestments)
 
 router.get('/', bondInvestmentsController.getAllBondsInvestments)
+
+router.get('/:id', bondInvestmentsController.getOneBondInvestment)
+
+router.put('/:id', bondInvestmentsController.updateBondInvestment)
+
+router.delete('/:id', bondInvestmentsController.deleteBondInvestment)
 
 
 module.exports = router

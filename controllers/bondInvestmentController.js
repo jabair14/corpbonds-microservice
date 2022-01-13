@@ -3,7 +3,7 @@ const db = require('../models/index')
 const BondsInvestment = db.BondInvestments;
 
 
-const addBondsInvestment = async (req, res) => {
+const addBondInvestments = async (req, res) => {
     let input_data = {
         investmentId: req.body.investmentId,
         bondId: req.body.bondId
@@ -14,8 +14,32 @@ const addBondsInvestment = async (req, res) => {
 }
 
 const getAllBondsInvestments = async (req, res) => {
-    let bondsInvestments = await BondsInvestment.findAll({})
+    let bondsInvestments = await BondsInvestment.findAll({
+        // include: db.Bonds
+    })
+        
     res.status(200).send(bondsInvestments)
+}
+
+const getOneBondInvestment = async (req, res) => {
+    let id = req.params.id
+
+    let bondsInvestments = await BondsInvestment.findOne({where: {id: id}})
+    res.status(200).send(bondsInvestments)
+}
+
+const updateBondInvestment = async (req, res) => {
+    let id = req.params.id
+    
+    const bondInvestment = await BondsInvestment.update(req.body, { where: {id: id}})
+    res.status(200).send(bondInvestment)
+}
+
+const deleteBondInvestment = async (req, res) => {
+    let id = req.params.id
+
+    await BondsInvestment.destroy({ where :{id: id}})
+    res.status(200).send(`BondInvestment with id: ${id} is deleted`)
 }
 
 
@@ -26,6 +50,9 @@ const getAllBondsInvestments = async (req, res) => {
 
 
 module.exports = {
-    addBondsInvestment,
+    addBondInvestments,
     getAllBondsInvestments,
+    getOneBondInvestment,
+    updateBondInvestment,
+    deleteBondInvestment
 }

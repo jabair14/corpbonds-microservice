@@ -41,8 +41,6 @@ db.sequelize.sync({ force: false }).then(() => {
 
 db.Bonds.belongsToMany(db.Investments, {through: db.BondInvestments})
 db.Investments.belongsToMany(db.Bonds, {through: db.BondInvestments})
-// db.Bonds.belongsTo(db.BondInvestments)
-// db.Investments.belongsTo(db.BondInvestments)
 
 
 

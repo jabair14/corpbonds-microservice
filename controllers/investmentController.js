@@ -13,8 +13,34 @@ const addInvestment = async (req, res) => {
 }
 
 const getAllInvestments = async (req, res) => {
-    let investments = await Investment.findAll({})
+    let investments = await Investment.findAll({
+        include: db.Bonds
+    })
     res.status(200).send(investments)
+}
+
+const getOneInvestment = async (req, res) => {
+    let id = req.params.id
+
+    let investments = await Investment.findOne({ where: {userId: id},
+        include: db.Bonds
+    })
+
+    res.status(200).send(investments)
+}
+
+const updateInvestment = async (req, res) => {
+    let id = req.params.id
+
+    const investment = await Investment.update( req.body, {where: { id: id }})
+    res.status(200).send(investment)
+}
+
+const deleteInvestment = async (req, res) => {
+    let id = req.params.id
+
+    await Investment.destroy({where :{id: id}})
+    res.status(200).send(`investment with id: ${id} is deleted`)
 }
 
 
@@ -25,5 +51,8 @@ const getAllInvestments = async (req, res) => {
 
 module.exports = {
     addInvestment,
-    getAllInvestments
+    getAllInvestments,
+    getOneInvestment,
+    updateInvestment,
+    deleteInvestment
 }
