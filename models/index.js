@@ -32,6 +32,7 @@ db.sequelize = sequelize
 db.Bonds = require('./bondModel')(sequelize, DataTypes)
 db.Investments = require('./investmentModel')(sequelize, DataTypes)
 db.BondInvestments = require('./bondInvestmentModel')(sequelize, DataTypes)
+db.Users = require('./userModel')(sequelize, DataTypes)
 
 db.sequelize.sync({ force: false }).then(() => {
     console.log('DB synched with sequelize')
@@ -41,6 +42,9 @@ db.sequelize.sync({ force: false }).then(() => {
 
 db.Bonds.belongsToMany(db.Investments, {through: db.BondInvestments})
 db.Investments.belongsToMany(db.Bonds, {through: db.BondInvestments})
+
+db.Users.hasMany(db.Investments)
+db.Investments.belongsTo(db.Users)
 
 
 
