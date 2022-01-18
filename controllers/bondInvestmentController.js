@@ -15,7 +15,7 @@ const addBondInvestments = async (req, res) => {
 
 const getAllBondsInvestments = async (req, res) => {
     let bondsInvestments = await BondsInvestment.findAll({
-        // include: db.Bonds
+        // include: db.Investments
     })
         
     res.status(200).send(bondsInvestments)

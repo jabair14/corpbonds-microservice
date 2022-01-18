@@ -11,3 +11,6 @@ module.exports = (sequelize, DataTypes) => {
 
     return User
 }
+
+
+//probably don't need this 

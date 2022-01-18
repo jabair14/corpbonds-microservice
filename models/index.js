@@ -40,6 +40,7 @@ db.sequelize.sync({ force: false }).then(() => {
     console.log('Error syncing the DB to sequelize' + error)
 })
 
+//relationships g
 db.Bonds.belongsToMany(db.Investments, {through: db.BondInvestments})
 db.Investments.belongsToMany(db.Bonds, {through: db.BondInvestments})
 
