@@ -22,6 +22,8 @@ let sequelize = null;
 
     if (process && process.env.DATABASE_URL) {
         sequelize = new Sequelize(process.env.DATABASE_URL, {
+            dialect: 'postgres',
+            protocol: 'postgres',
             dialectOptions: {
             ssl: {
                 require: true,
