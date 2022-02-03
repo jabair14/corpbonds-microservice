@@ -1,16 +1,16 @@
-module.exports = (sequelize, DataTypes) => {
-    const User = sequelize.define('user', {
-        id: {
-            type: DataTypes.INTEGER,
-            autoIncrement: true,
-            allowNull: false,
-            primaryKey: true,
+// module.exports = (sequelize, DataTypes) => {
+//     const User = sequelize.define('user', {
+//         id: {
+//             type: DataTypes.INTEGER,
+//             autoIncrement: true,
+//             allowNull: false,
+//             primaryKey: true,
             
-        } 
-})
+//         } 
+// })
 
-    return User
-}
+//     return User
+// }
 
 
-//probably don't need this 
+// //probably don't need this 
