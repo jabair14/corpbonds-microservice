@@ -1,11 +1,11 @@
 module.exports = (sequelize, DataTypes) => {
     const BondInvestment = sequelize.define('bondInvestment', {
-        id: {
-            type: DataTypes.INTEGER,
-            autoIncrement: true,
-            allowNull: false,
-            primaryKey: true
-        },
+        // id: {
+        //     type: DataTypes.INTEGER,
+        //     autoIncrement: true,
+        //     allowNull: false,
+        //     primaryKey: true
+        // },
 
         investmentId: {
             type: DataTypes.INTEGER,
